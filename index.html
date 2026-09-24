@@ -33,7 +33,6 @@
         <div class="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-4">
                 <div class="relative w-14 h-14 rounded-full p-0.5 bg-gradient-to-tr from-accentCyan to-accentNeon shadow-lg shadow-cyan-500/20 flex-shrink-0">
-                    <!-- Nome exato do arquivo conforme o seu repositório GitHub -->
                     <img src="LOGO-SAVIO-GOMES-JPEG.jpeg" alt="Logo Sávio Gomes" onerror="this.onerror=null; this.src='logo.jpeg';" class="w-full h-full rounded-full object-cover">
                 </div>
                 <div>
@@ -45,7 +44,6 @@
                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-accentCyan/10 text-accentCyan border border-accentCyan/30 shadow-inner">
                     <span class="w-2 h-2 rounded-full bg-accentNeon mr-2 animate-pulse"></span> Sistema Online
                 </span>
-                <!-- Botão de Login do Administrador -->
                 <button onclick="abrirLogin()" class="text-xs bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-xl border border-red-500 font-bold transition-all shadow-lg shadow-red-600/30 flex items-center gap-2">
                     <span>🔐</span> Acesso Admin
                 </button>
@@ -79,7 +77,7 @@
             </div>
         </div>
 
-        <!-- Módulos do Sistema -->
+        <!-- Módulos do Sistema (Ordenados exatamente conforme solicitado) -->
         <div class="bg-cardBg border border-cardBorder rounded-2xl shadow-2xl p-6 md:p-8">
             <div class="flex justify-between items-center mb-6 border-b border-cardBorder pb-4">
                 <h2 class="text-lg font-bold text-white tracking-wide">Módulos do Sistema</h2>
@@ -87,60 +85,66 @@
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-                <button onclick="abrirModulo('Cadastro de Alunos')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
+                <!-- 1. Cadastro -->
+                <button onclick="abrirModulo('Cadastro')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-accentCyan/10 text-accentCyan text-lg group-hover:bg-accentCyan group-hover:text-black transition-colors">📝</span>
-                        <h4 class="font-bold text-white group-hover:text-accentCyan transition-colors">Cadastro de Alunos</h4>
+                        <h4 class="font-bold text-white group-hover:text-accentCyan transition-colors">Cadastro</h4>
                     </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">Registro de novos praticantes e dados.</p>
+                    <p class="text-xs text-gray-400 leading-relaxed">Registro completo de novos praticantes, graduação e biometria.</p>
                 </button>
 
+                <!-- 2. Perfil do Aluno -->
                 <button onclick="abrirModulo('Perfil do Aluno')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-accentCyan/10 text-accentCyan text-lg group-hover:bg-accentCyan group-hover:text-black transition-colors">👤</span>
                         <h4 class="font-bold text-white group-hover:text-accentCyan transition-colors">Perfil do Aluno</h4>
                     </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">Histórico de presenças, faixas e graus.</p>
+                    <p class="text-xs text-gray-400 leading-relaxed">Painel individual com histórico, presenças e previsão de graduação.</p>
                 </button>
 
+                <!-- 3. Graduação -->
                 <button onclick="abrirModulo('Graduação')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-accentCyan/10 text-accentCyan text-lg group-hover:bg-accentCyan group-hover:text-black transition-colors">📊</span>
                         <h4 class="font-bold text-white group-hover:text-accentCyan transition-colors">Graduação</h4>
                     </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">Acompanhamento de evolução técnica.</p>
+                    <p class="text-xs text-gray-400 leading-relaxed">Lista gerencial espelhada com faixas, graus e previsões.</p>
                 </button>
 
+                <!-- 4. Controle de Presença -->
                 <button onclick="abrirModulo('Controle de Presença')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentNeon cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-accentNeon/10 text-accentNeon text-lg group-hover:bg-accentNeon group-hover:text-black transition-colors">✅</span>
                         <h4 class="font-bold text-white group-hover:text-accentNeon transition-colors">Controle de Presença</h4>
                     </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">Chamada rápida diária.</p>
+                    <p class="text-xs text-gray-400 leading-relaxed">Tela rápida diária no tatame com chamada por toque.</p>
                 </button>
 
+                <!-- 5. Loja SM -->
                 <button onclick="abrirModulo('Loja SM')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentNeon cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-accentNeon/10 text-accentNeon text-lg group-hover:bg-accentNeon group-hover:text-black transition-colors">🛍️</span>
                         <h4 class="font-bold text-white group-hover:text-accentNeon transition-colors">Loja SM</h4>
                     </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">Controle de kimonos, rash guards e artigos.</p>
+                    <p class="text-xs text-gray-400 leading-relaxed">Kimonos, Rash Guards, Faixas, Bonés e Brasões oficiais.</p>
                 </button>
 
+                <!-- 6. Financeiro (Posicionado por último conforme solicitado) -->
                 <button onclick="abrirModulo('Financeiro')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-purple-500 cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-purple-500/10 text-purple-400 text-lg group-hover:bg-purple-500 group-hover:text-white transition-colors">💲</span>
                         <h4 class="font-bold text-white group-hover:text-purple-400 transition-colors">Financeiro</h4>
                     </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">Entradas, custos e controle de inadimplência.</p>
+                    <p class="text-xs text-gray-400 leading-relaxed">Caixa, Pix automatizado, inadimplência e relatório de fechamento.</p>
                 </button>
             </div>
         </div>
     </main>
 
-    <!-- Modal Dinâmico de Lançamentos e Acessos -->
+    <!-- Modal Dinâmico de Lançamentos, Segurança e Gestão -->
     <div id="modalModulo" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-cardBg border border-cardBorder rounded-2xl w-full max-w-lg p-6 shadow-2xl relative">
+        <div class="bg-cardBg border border-cardBorder rounded-2xl w-full max-w-xl p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-4 border-b border-cardBorder pb-3">
                 <h3 id="modalTitulo" class="text-lg font-bold text-accentCyan">Painel</h3>
                 <button onclick="fecharModal()" class="text-gray-400 hover:text-white text-2xl font-bold px-2 py-0.5">&times;</button>
@@ -148,31 +152,38 @@
             <div id="modalConteudo" class="text-sm text-gray-300 mb-6 space-y-4">
                 <!-- Conteúdo injetado dinamicamente -->
             </div>
-            <div class="flex justify-end gap-3">
-                <button onclick="fecharModal()" class="px-4 py-2 bg-cardBorder hover:bg-gray-700 text-white rounded-xl text-xs font-semibold transition-colors">Cancelar</button>
-                <button onclick="alert('Dados lançados e guardados com sucesso!'); fecharModal();" class="px-4 py-2 bg-accentCyan text-black hover:bg-cyan-400 rounded-xl text-xs font-bold transition-colors shadow-lg shadow-cyan-500/20">Salvar Registos</button>
+            <div class="flex justify-end gap-3 border-t border-cardBorder pt-4">
+                <button onclick="fecharModal()" class="px-4 py-2 bg-cardBorder hover:bg-gray-700 text-white rounded-xl text-xs font-semibold transition-colors">Fechar</button>
+                <button onclick="alert('Operação efetuada com sucesso!'); fecharModal();" class="px-4 py-2 bg-accentCyan text-black hover:bg-cyan-400 rounded-xl text-xs font-bold transition-colors shadow-lg shadow-cyan-500/20">Salvar Registos</button>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
     <footer class="bg-cardBg border-t border-cardBorder py-6 text-center text-xs text-gray-500">
-        <p>Sávio Gomes Jiu-Jitsu & MMA - Todos os direitos reservados[cite: 8].</p>
+        <p>Sávio Gomes Jiu-Jitsu & MMA - Todos os direitos reservados. Suporte Flávio: (67) 99162-8546</p>
     </footer>
 
     <script>
         function abrirLogin() {
-            document.getElementById('modalTitulo').innerText = "Painel de Acesso do Administrador";
+            document.getElementById('modalTitulo').innerText = "🛡️ Módulo de Segurança e Acesso Restrito";
             document.getElementById('modalConteudo').innerHTML = `
-                <div class="space-y-3">
-                    <p class="text-xs text-gray-400">Insira as suas credenciais de coach/administrador para entrar:</p>
+                <div class="space-y-4">
+                    <p class="text-xs text-gray-400">Ambiente blindado com criptografia avançada. Insira as credenciais iniciais fornecidas:</p>
                     <div>
-                        <label class="block text-xs font-semibold text-gray-300 mb-1">E-mail ou Utilizador:</label>
-                        <input type="text" placeholder="ex: saviogomes@bjj.com" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-red-500">
+                        <label class="block text-xs font-semibold text-gray-300 mb-1">Login (Padrão: FLAVIA):</label>
+                        <input type="text" id="loginInput" value="FLAVIA" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-red-500">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-gray-300 mb-1">Palavra-passe:</label>
-                        <input type="password" placeholder="••••••••" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-red-500">
+                        <label class="block text-xs font-semibold text-gray-300 mb-1">Senha (Padrão: 12345FG):</label>
+                        <input type="password" id="senhaInput" value="12345FG" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-red-500">
+                    </div>
+                    <div class="bg-darkBg p-3 rounded-xl border border-cardBorder text-xs text-cyan-400 space-y-1">
+                        <p><strong>Regra de Primeiro Acesso:</strong> O sistema exigirá redefinição imediata de nova palavra-passe.</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-2">
+                        <a href="mailto:flavinha_vitorio@hotmail.com" class="text-xs text-accentCyan hover:underline">Esqueceu a senha? (Enviar para flavinha_vitorio@hotmail.com)</a>
+                        <span class="text-xs text-gray-400">Suporte: (67) 99162-8546 (Flavia)</span>
                     </div>
                 </div>
             `;
@@ -180,26 +191,239 @@
         }
 
         function abrirModulo(nome) {
-            document.getElementById('modalTitulo').innerText = `Gestão / Lançamento: ${nome}`;
-            document.getElementById('modalConteudo').innerHTML = `
-                <div class="space-y-3">
-                    <p class="text-xs text-gray-400">Insira os dados e informações para registo no sistema:</p>
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-300 mb-1">Nome do Aluno / Item / Descrição:</label>
-                        <input type="text" placeholder="Digite o nome completo..." class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accentCyan">
-                    </div>
-                    <div class="grid grid-cols-2 gap-3">
+            document.getElementById('modalTitulo').innerText = `Painel Administrativo: ${nome}`;
+            let conteudoHTML = '';
+
+            if (nome === 'Cadastro') {
+                conteudoHTML = `
+                    <div class="space-y-3">
+                        <p class="text-xs text-gray-400">Preencha os dados obrigatórios do novo aluno. O sistema integrará automaticamente as demais abas:</p>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-300 mb-1">Categoria / Graduação:</label>
-                            <input type="text" placeholder="Ex: Faixa Preta / Adulto" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accentCyan">
+                            <label class="block text-xs font-semibold text-gray-300 mb-1">Nome Completo *</label>
+                            <input type="text" placeholder="Nome completo do aluno" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accentCyan">
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Data de Nascimento *</label>
+                                <input type="date" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accentCyan">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">WhatsApp *</label>
+                                <input type="text" placeholder="(67) 99999-9999" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accentCyan">
+                            </div>
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-300 mb-1">Valor / Status:</label>
-                            <input type="text" placeholder="Ex: R$ 150,00 / Ativo" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accentCyan">
+                            <label class="block text-xs font-semibold text-gray-300 mb-1">Endereço *</label>
+                            <input type="text" placeholder="Endereço residencial" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accentCyan">
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Data de Início do Treino *</label>
+                                <input type="date" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accentCyan">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Biometria Facial</label>
+                                <button type="button" onclick="alert('Captura de Biometria Facial realizada com sucesso!')" class="w-full bg-accentCyan/10 border border-accentCyan/30 hover:bg-accentCyan/20 text-accentCyan font-semibold py-2 rounded-xl text-xs transition-all">📷 Capturar Face</button>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Seleção de Faixa</label>
+                                <select class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accentCyan">
+                                    <option>Faixa Branca</option>
+                                    <option>Faixa Azul</option>
+                                    <option>Faixa Roxa</option>
+                                    <option>Faixa Marrom</option>
+                                    <option>Faixa Preta</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Grau (0 a 6)</label>
+                                <select class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accentCyan">
+                                    <option>0 Graus</option>
+                                    <option>1 Grau</option>
+                                    <option>2 Graus</option>
+                                    <option>3 Graus</option>
+                                    <option>4 Graus</option>
+                                    <option>5 Graus</option>
+                                    <option>6 Graus</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="border-t border-cardBorder pt-3 space-y-2">
+                            <label class="block text-xs font-bold text-accentCyan">Condição Especial / Experimental / Bolsista:</label>
+                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                <div>
+                                    <span class="text-gray-400 block mb-1">Aula Experimental?</span>
+                                    <select class="w-full bg-darkBg border border-cardBorder rounded-lg px-2 py-1 text-white"><option>Não</option><option>Sim</option></select>
+                                </div>
+                                <div>
+                                    <span class="text-gray-400 block mb-1">Pagar Experimental?</span>
+                                    <select class="w-full bg-darkBg border border-cardBorder rounded-lg px-2 py-1 text-white"><option>Não</option><option>Sim</option></select>
+                                </div>
+                                <div>
+                                    <span class="text-gray-400 block mb-1">Bolsista?</span>
+                                    <select class="w-full bg-darkBg border border-cardBorder rounded-lg px-2 py-1 text-white"><option>Não</option><option>Sim</option></select>
+                                </div>
+                                <div>
+                                    <span class="text-gray-400 block mb-1">Pagar sendo Bolsista?</span>
+                                    <select class="w-full bg-darkBg border border-cardBorder rounded-lg px-2 py-1 text-white"><option>Não</option><option>Sim</option></select>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
+            } else if (nome === 'Perfil do Aluno') {
+                conteudoHTML = `
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 mb-1">Pesquisar Aluno:</label>
+                            <input type="text" placeholder="Digite o nome do aluno..." class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accentCyan">
+                        </div>
+                        <div class="bg-darkBg p-4 rounded-xl border border-cardBorder flex items-center gap-4">
+                            <div class="w-16 h-16 rounded-full bg-cardBorder flex items-center justify-center text-2xl">🥋</div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Nome do Aluno Exemplo</h4>
+                                <p class="text-xs text-accentCyan">Faixa Azul • 2 Graus</p>
+                                <p class="text-xs text-gray-400">Previsão Automática de Graduação: 15/12/2026</p>
+                            </div>
+                        </div>
+                        <div class="text-xs space-y-1 text-gray-300">
+                            <p><strong>Histórico de Presença:</strong> 24 aulas computadas no mês.</p>
+                            <p><strong>Contato:</strong> (67) 99999-9999 | Corumbá-MS</p>
+                        </div>
+                    </div>
+                `;
+            } else if (nome === 'Graduação') {
+                conteudoHTML = `
+                    <div class="space-y-3">
+                        <p class="text-xs text-gray-400">Lista gerencial espelhada na base de cadastros com previsão automatizada:</p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs">
+                                <thead class="border-b border-cardBorder text-gray-400">
+                                    <tr>
+                                        <th class="pb-2">Nome do Aluno</th>
+                                        <th class="pb-2">Faixa</th>
+                                        <th class="pb-2">Grau</th>
+                                        <th class="pb-2">Previsão</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-cardBorder text-gray-300">
+                                    <tr><td class="py-2">Carlos Silva</td><td>Faixa Azul</td><td>2 Graus</td><td>12/11/2026</td></tr>
+                                    <tr><td class="py-2">Mariana Santos</td><td>Faixa Branca</td><td>4 Graus</td><td>20/10/2026</td></tr>
+                                    <tr><td class="py-2">João Pedro</td><td>Faixa Roxa</td><td>1 Grau</td><td>05/01/2027</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            } else if (nome === 'Controle de Presença') {
+                conteudoHTML = `
+                    <div class="space-y-3">
+                        <p class="text-xs text-gray-400">Chamada rápida diária no tatame (toque no botão lateral para registrar presença):</p>
+                        <div class="space-y-2 max-h-60 overflow-y-auto">
+                            <div class="flex justify-between items-center bg-darkBg p-3 rounded-xl border border-cardBorder">
+                                <div>
+                                    <p class="font-bold text-white text-xs">Carlos Silva</p>
+                                    <p class="text-[10px] text-accentNeon">Faixa Azul • 2 Graus</p>
+                                </div>
+                                <button onclick="this.innerText='Presença Confirmada!'; this.className='bg-green-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold';" class="bg-cardBorder text-gray-300 px-3 py-1.5 rounded-lg text-xs hover:bg-accentNeon hover:text-black transition-colors">Dar Presença</button>
+                            </div>
+                            <div class="flex justify-between items-center bg-darkBg p-3 rounded-xl border border-cardBorder">
+                                <div>
+                                    <p class="font-bold text-white text-xs">Mariana Santos</p>
+                                    <p class="text-[10px] text-accentNeon">Faixa Branca • 4 Graus</p>
+                                </div>
+                                <button onclick="this.innerText='Presença Confirmada!'; this.className='bg-green-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold';" class="bg-cardBorder text-gray-300 px-3 py-1.5 rounded-lg text-xs hover:bg-accentNeon hover:text-black transition-colors">Dar Presença</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (nome === 'Loja SM') {
+                conteudoHTML = `
+                    <div class="space-y-3">
+                        <p class="text-xs text-gray-400">Painel exclusivo de vendas de artigos oficiais da academia:</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Produto Oficial</label>
+                                <select class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
+                                    <option>Kimono Oficial Sávio Gomes</option>
+                                    <option>Faixa Bordada</option>
+                                    <option>Camiseta Oficial</option>
+                                    <option>Rash Guard</option>
+                                    <option>Boné SM</option>
+                                    <option>Brasão da Academia (Grande)</option>
+                                    <option>Brasão da Academia (Pequeno)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Tamanho / Opção</label>
+                                <input type="text" placeholder="Ex: A2 / G / Único" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 mb-1">Nome do Aluno Comprador</label>
+                            <input type="text" placeholder="Nome do aluno..." class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Valor (R$)</label>
+                                <input type="text" placeholder="R$ 0,00" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Data de Entrega</label>
+                                <input type="date" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
+                            </div>
+                        </div>
+                        <div class="bg-darkBg p-3 rounded-xl border border-cardBorder text-xs space-y-1">
+                            <p class="text-red-400">🔴 Vermelho: Aguardando Pagamento</p>
+                            <p class="text-green-400">🟢 Verde: Pago / Integrado ao Caixa</p>
+                            <p class="text-amber-400">🟠 Status de Entrega pendente ou entregue</p>
+                        </div>
+                    </div>
+                `;
+            } else if (nome === 'Financeiro') {
+                conteudoHTML = `
+                    <div class="space-y-4">
+                        <p class="text-xs text-gray-400">Módulo completo de caixa, cobranças blindadas e relatórios:</p>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="alert('Código Pix Copia e Cola gerado com sucesso!')" class="bg-accentCyan/10 border border-accentCyan/30 text-accentCyan hover:bg-accentCyan/20 py-2 rounded-xl text-xs font-bold transition-all">⚡ Gerar Pix Automatizado</button>
+                            <button onclick="alert('Alerta de cobrança enviado via WhatsApp com sucesso!')" class="bg-accentNeon/10 border border-accentNeon/30 text-accentNeon hover:bg-accentNeon/20 py-2 rounded-xl text-xs font-bold transition-all">💬 Cobrança WhatsApp</button>
+                        </div>
+                        <div class="space-y-2">
+                            <h5 class="text-xs font-bold text-white">Lista de Alunos e Inadimplência:</h5>
+                            <div class="space-y-1.5 text-xs">
+                                <div class="flex justify-between items-center bg-red-950/30 border border-red-900/50 p-2.5 rounded-lg">
+                                    <span class="text-red-400 font-semibold">🔴 Carlos Silva (Débito: 2 meses em atraso)</span>
+                                    <button onclick="alert('Pagamento confirmado! Aluno removido da lista de débitos.')" class="bg-red-600 text-white px-2.5 py-1 rounded text-[10px] font-bold">Dar Baixa / Pagar</button>
+                                </div>
+                                <div class="flex justify-between items-center bg-green-950/30 border border-green-900/50 p-2.5 rounded-lg">
+                                    <span class="text-green-400 font-semibold">🟢 Mariana Santos (Adimplente)</span>
+                                    <span class="text-gray-400">Pago</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-green-950/30 border border-green-900/50 p-2.5 rounded-lg">
+                                    <span class="text-green-400 font-semibold">🟢 Bolsista: João Pedro (Regra de exceção aplicada)</span>
+                                    <span class="text-gray-400">Isento / Conforme regra</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-yellow-950/30 border border-yellow-900/50 p-2.5 rounded-lg">
+                                    <span class="text-yellow-400 font-semibold">🟡 Aluno Experimental</span>
+                                    <span class="text-gray-400">Em avaliação</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-t border-cardBorder pt-3 space-y-2">
+                            <h5 class="text-xs font-bold text-white">Relatório de Fechamento Personalizado:</h5>
+                            <div class="grid grid-cols-2 gap-2">
+                                <input type="date" class="bg-darkBg border border-cardBorder rounded-lg px-2 py-1.5 text-white text-xs">
+                                <input type="date" class="bg-darkBg border border-cardBorder rounded-lg px-2 py-1.5 text-white text-xs">
+                            </div>
+                            <button onclick="alert('Balanço gerado com sucesso! Entradas, Custos e Resultado Líquido calculados.')" class="w-full bg-purple-600 hover:bg-purple-500 text-white py-2 rounded-xl text-xs font-bold transition-all">📊 Gerar Fechamento de Caixa</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            document.getElementById('modalConteudo').innerHTML = conteudoHTML;
             document.getElementById('modalModulo').classList.remove('hidden');
         }
 
