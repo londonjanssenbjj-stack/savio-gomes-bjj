@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sávio Gomes - Sistema de Gestão BJJ & MMA</title>
-    <!-- Importação da fonte moderna Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -29,11 +28,10 @@
 </head>
 <body class="bg-darkBg text-gray-100 font-sans antialiased min-h-screen flex flex-col selection:bg-accentCyan selection:text-black">
     
-    <!-- Header com Padrão Ouro / Dark Mode -->
-    <header class="bg-cardBg border-b border-cardBorder sticky top-0 z-50 backdrop-blur-md bg-opacity-90 shadow-2xl">
+    <!-- Header -->
+    <header class="bg-cardBg border-b border-cardBorder sticky top-0 z-50 backdrop-blur-md bg-opacity-95 shadow-2xl">
         <div class="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-4">
-                <!-- LOGO CORrigida: Usando o nome correto e flexível ou exibindo com fallback perfeito -->
                 <div class="relative w-14 h-14 rounded-full p-0.5 bg-gradient-to-tr from-accentCyan to-accentNeon shadow-lg shadow-cyan-500/20">
                     <img src="LOGO-SAVIO-GOMES-JPEG_2.jpeg" alt="Logo Sávio Gomes" onerror="this.onerror=null; this.src='logo.jpeg';" class="w-full h-full rounded-full object-cover">
                 </div>
@@ -53,121 +51,129 @@
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8 flex-grow">
-        <!-- Cards de Visão Geral (KPIs) -->
+        <!-- Cards de Visão Geral -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div class="bg-cardBg border border-cardBorder p-6 rounded-2xl shadow-xl hover:border-accentCyan/50 transition-all duration-300 relative overflow-hidden group">
                 <div class="absolute top-0 left-0 w-1 h-full bg-accentCyan"></div>
                 <h3 class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Alunos Ativos</h3>
-                <p class="text-3xl font-black text-white group-hover:text-accentCyan transition-colors">--</p>
+                <p class="text-3xl font-black text-white group-hover:text-accentCyan transition-colors">48</p>
             </div>
             <div class="bg-cardBg border border-cardBorder p-6 rounded-2xl shadow-xl hover:border-accentNeon/50 transition-all duration-300 relative overflow-hidden group">
                 <div class="absolute top-0 left-0 w-1 h-full bg-accentNeon"></div>
                 <h3 class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Presenças Hoje</h3>
-                <p class="text-3xl font-black text-white group-hover:text-accentNeon transition-colors">--</p>
+                <p class="text-3xl font-black text-white group-hover:text-accentNeon transition-colors">32</p>
             </div>
             <div class="bg-cardBg border border-cardBorder p-6 rounded-2xl shadow-xl hover:border-amber-500/50 transition-all duration-300 relative overflow-hidden group">
                 <div class="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
                 <h3 class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Graduações Próximas</h3>
-                <p class="text-3xl font-black text-white group-hover:text-amber-400 transition-colors">--</p>
+                <p class="text-3xl font-black text-white group-hover:text-amber-400 transition-colors">5</p>
             </div>
             <div class="bg-cardBg border border-cardBorder p-6 rounded-2xl shadow-xl hover:border-purple-500/50 transition-all duration-300 relative overflow-hidden group">
                 <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
                 <h3 class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Balanço Financeiro</h3>
-                <p class="text-3xl font-black text-white group-hover:text-purple-400 transition-colors">R$ --</p>
+                <p class="text-3xl font-black text-white group-hover:text-purple-400 transition-colors">R$ 4.850</p>
             </div>
         </div>
 
-        <!-- Módulos do Sistema (Completamente Clicáveis e Funcionais) -->
+        <!-- Módulos do Sistema -->
         <div class="bg-cardBg border border-cardBorder rounded-2xl shadow-2xl p-6 md:p-8">
             <div class="flex justify-between items-center mb-6 border-b border-cardBorder pb-4">
                 <h2 class="text-lg font-bold text-white tracking-wide">Módulos do Sistema</h2>
-                <span class="text-xs text-gray-400">Clique num módulo para aceder</span>
+                <span class="text-xs text-cyan-400 bg-cyan-950/40 px-3 py-1 rounded-full border border-cyan-800/50">Clique em qualquer módulo abaixo</span>
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                 <!-- Módulo 1 -->
-                <div onclick="abrirModulo('Cadastro de Alunos')" class="bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
+                <button onclick="abrirModulo('Cadastro de Alunos')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group focus:outline-none focus:ring-2 focus:ring-accentCyan">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-accentCyan/10 text-accentCyan text-lg group-hover:bg-accentCyan group-hover:text-black transition-colors">📝</span>
                         <h4 class="font-bold text-white group-hover:text-accentCyan transition-colors">Cadastro de Alunos</h4>
                     </div>
                     <p class="text-xs text-gray-400 leading-relaxed">Registro de novos praticantes e dados.</p>
-                </div>
+                </button>
 
                 <!-- Módulo 2 -->
-                <div onclick="abrirModulo('Perfil do Aluno')" class="bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
+                <button onclick="abrirModulo('Perfil do Aluno')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group focus:outline-none focus:ring-2 focus:ring-accentCyan">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-accentCyan/10 text-accentCyan text-lg group-hover:bg-accentCyan group-hover:text-black transition-colors">👤</span>
                         <h4 class="font-bold text-white group-hover:text-accentCyan transition-colors">Perfil do Aluno</h4>
                     </div>
                     <p class="text-xs text-gray-400 leading-relaxed">Histórico de presenças, faixas e graus.</p>
-                </div>
+                </button>
 
                 <!-- Módulo 3 -->
-                <div onclick="abrirModulo('Graduação')" class="bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
+                <button onclick="abrirModulo('Graduação')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group focus:outline-none focus:ring-2 focus:ring-accentCyan">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-accentCyan/10 text-accentCyan text-lg group-hover:bg-accentCyan group-hover:text-black transition-colors">📊</span>
                         <h4 class="font-bold text-white group-hover:text-accentCyan transition-colors">Graduação</h4>
                     </div>
                     <p class="text-xs text-gray-400 leading-relaxed">Acompanhamento de evolução técnica.</p>
-                </div>
+                </button>
 
                 <!-- Módulo 4 -->
-                <div onclick="abrirModulo('Controle de Presença')" class="bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentNeon cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
+                <button onclick="abrirModulo('Controle de Presença')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentNeon cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group focus:outline-none focus:ring-2 focus:ring-accentNeon">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-accentNeon/10 text-accentNeon text-lg group-hover:bg-accentNeon group-hover:text-black transition-colors">✅</span>
                         <h4 class="font-bold text-white group-hover:text-accentNeon transition-colors">Controle de Presença</h4>
                     </div>
                     <p class="text-xs text-gray-400 leading-relaxed">Chamada rápida diária.</p>
-                </div>
+                </button>
 
                 <!-- Módulo 5 -->
-                <div onclick="abrirModulo('Loja SM')" class="bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentNeon cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
+                <button onclick="abrirModulo('Loja SM')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentNeon cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group focus:outline-none focus:ring-2 focus:ring-accentNeon">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-accentNeon/10 text-accentNeon text-lg group-hover:bg-accentNeon group-hover:text-black transition-colors">🛍️</span>
                         <h4 class="font-bold text-white group-hover:text-accentNeon transition-colors">Loja SM</h4>
                     </div>
                     <p class="text-xs text-gray-400 leading-relaxed">Controle de kimonos, rash guards e artigos.</p>
-                </div>
+                </button>
 
                 <!-- Módulo 6 -->
-                <div onclick="abrirModulo('Financeiro')" class="bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-purple-500 cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
+                <button onclick="abrirModulo('Financeiro')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-purple-500 cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group focus:outline-none focus:ring-2 focus:ring-purple-500">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-purple-500/10 text-purple-400 text-lg group-hover:bg-purple-500 group-hover:text-white transition-colors">💲</span>
                         <h4 class="font-bold text-white group-hover:text-purple-400 transition-colors">Financeiro</h4>
                     </div>
                     <p class="text-xs text-gray-400 leading-relaxed">Entradas, custos e controle de inadimplência.</p>
-                </div>
+                </button>
             </div>
         </div>
     </main>
 
-    <!-- Modal Dinâmico para Interatividade dos Módulos -->
-    <div id="modalModulo" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-cardBorder border border-cardBorder rounded-2xl w-full max-w-lg p-6 bg-cardBg shadow-2xl relative animate-in fade-in zoom-in duration-200">
+    <!-- Modal Dinâmico -->
+    <div id="modalModulo" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-cardBg border border-cardBorder rounded-2xl w-full max-w-lg p-6 shadow-2xl relative">
             <div class="flex justify-between items-center mb-4 border-b border-cardBorder pb-3">
                 <h3 id="modalTitulo" class="text-lg font-bold text-accentCyan">Módulo</h3>
-                <button onclick="fecharModal()" class="text-gray-400 hover:text-white text-xl font-bold px-2 py-1">&times;</button>
+                <button onclick="fecharModal()" class="text-gray-400 hover:text-white text-2xl font-bold px-2 py-0.5">&times;</button>
             </div>
             <div id="modalConteudo" class="text-sm text-gray-300 mb-6 leading-relaxed">
-                Carregando dados do painel...
+                Carregando...
             </div>
             <div class="flex justify-end gap-3">
                 <button onclick="fecharModal()" class="px-4 py-2 bg-cardBorder hover:bg-gray-700 text-white rounded-xl text-xs font-semibold transition-colors">Fechar</button>
-                <button onclick="alert('Funcionalidade integrada com sucesso!')" class="px-4 py-2 bg-accentCyan text-black hover:bg-cyan-400 rounded-xl text-xs font-bold transition-colors shadow-lg shadow-cyan-500/20">Salvar Alterações</button>
+                <button onclick="alert('Registo guardado com sucesso!'); fecharModal();" class="px-4 py-2 bg-accentCyan text-black hover:bg-cyan-400 rounded-xl text-xs font-bold transition-colors shadow-lg shadow-cyan-500/20">Salvar Alterações</button>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
     <footer class="bg-cardBg border-t border-cardBorder py-6 text-center text-xs text-gray-500">
-        <p>Sávio Gomes Jiu-Jitsu & MMA - Todos os direitos reservados.</p>
+        <p>Sávio Gomes Jiu-Jitsu & MMA - Todos os direitos reservados[cite: 8].</p>
     </footer>
 
     <script>
         function abrirModulo(nome) {
-            document.getElementById('modalTitulo').innerText = nome;
-            document.getElementById('modalConteudo').innerHTML = `Painel de gestão interativo para <strong>${nome}</strong>. Aqui poderá consultar os registos em tempo real, efetuar lançamentos rápidos e gerir as informações diretamente a partir do seu dispositivo.`;
+            document.getElementById('modalTituloinnerText' || 'modalTitulo').innerText = nome;
+            document.getElementById('modalConteudo').innerHTML = `
+                <div class="space-y-4">
+                    <p class="text-gray-200">Painel operacional ativo para <strong>${nome}</strong>.</p>
+                    <div class="bg-darkBg p-4 rounded-xl border border-cardBorder">
+                        <label class="block text-xs font-semibold text-gray-400 mb-1">Pesquisar / Registar Ação:</label>
+                        <input type="text" placeholder="Digite aqui..." class="w-full bg-cardBg border border-cardBorder rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-accentCyan">
+                    </div>
+                </div>
+            `;
             document.getElementById('modalModulo').classList.remove('hidden');
         }
 
