@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestão - Academia de Jiu-Jitsu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-slate-900 text-white shadow-md">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <h1 class="text-xl font-bold">Gestão de Academia & Projetos Sociais</h1>
+                <span class="text-sm bg-blue-600 px-3 py-1 rounded">Painel Administrativo</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8 flex-grow">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+                    <h3 class="text-gray-500 text-sm font-semibold">Alunos Ativos</h3>
+                    <p class="text-2xl font-bold text-slate-800">--</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow border-l-4 border-green-500">
+                    <h3 class="text-gray-500 text-sm font-semibold">Presenças Hoje</h3>
+                    <p class="text-2xl font-bold text-slate-800">--</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow border-l-4 border-yellow-500">
+                    <h3 class="text-gray-500 text-sm font-semibold">Graduações Próximas</h3>
+                    <p class="text-2xl font-bold text-slate-800">--</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow border-l-4 border-purple-500">
+                    <h3 class="text-gray-500 text-sm font-semibold">Balanço Financeiro</h3>
+                    <p class="text-2xl font-bold text-slate-800">R$ --</p>
+                </div>
+            </div>
+
+            <!-- Módulos do Sistema -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-lg font-bold text-slate-800 mb-4">Módulos do Sistema</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="p-4 border rounded hover:bg-slate-50 cursor-pointer">
+                        <h4 class="font-bold text-blue-600">📝 Cadastro de Alunos</h4>
+                        <p class="text-sm text-gray-600">Registro de novos praticantes e dados.</p>
+                    </div>
+                    <div class="p-4 border rounded hover:bg-slate-50 cursor-pointer">
+                        <h4 class="font-bold text-blue-600">👤 Perfil do Aluno</h4>
+                        <p class="text-sm text-gray-600">Histórico de presenças, faixas e graus.</p>
+                    </div>
+                    <div class="p-4 border rounded hover:bg-slate-50 cursor-pointer">
+                        <h4 class="font-bold text-blue-600">📊 Graduação</h4>
+                        <p class="text-sm text-gray-600">Acompanhamento de evolução técnica.</p>
+                    </div>
+                    <div class="p-4 border rounded hover:bg-slate-50 cursor-pointer">
+                        <h4 class="font-bold text-blue-600">✅ Controle de Presença</h4>
+                        <p class="text-sm text-gray-600">Chamada rápida diária.</p>
+                    </div>
+                    <div class="p-4 border rounded hover:bg-slate-50 cursor-pointer">
+                        <h4 class="font-bold text-blue-600">🛍️ Loja SM</h4>
+                        <p class="text-sm text-gray-600">Controle de kimonos, rash guards e artigos.</p>
+                    </div>
+                    <div class="p-4 border rounded hover:bg-slate-50 cursor-pointer">
+                        <h4 class="font-bold text-blue-600">💲 Financeiro</h4>
+                        <p class="text-sm text-gray-600">Entradas, custos e controle de inadimplência.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t py-4 text-center text-sm text-gray-500">
+            Sistema desenvolvido para gestão esportiva.
+        </footer>
+    </div>
+</body>
+</html>
