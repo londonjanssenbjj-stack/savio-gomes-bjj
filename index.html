@@ -32,8 +32,9 @@
     <header class="bg-cardBg border-b border-cardBorder sticky top-0 z-50 backdrop-blur-md bg-opacity-95 shadow-2xl">
         <div class="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-4">
-                <div class="relative w-14 h-14 rounded-full p-0.5 bg-gradient-to-tr from-accentCyan to-accentNeon shadow-lg shadow-cyan-500/20">
-                    <img src="LOGO-SAVIO-GOMES-JPEG_2.jpeg" alt="Logo Sávio Gomes" onerror="this.onerror=null; this.src='logo.jpeg';" class="w-full h-full rounded-full object-cover">
+                <div class="relative w-14 h-14 rounded-full p-0.5 bg-gradient-to-tr from-accentCyan to-accentNeon shadow-lg shadow-cyan-500/20 flex-shrink-0">
+                    <!-- Nome exato do arquivo conforme o seu repositório GitHub -->
+                    <img src="LOGO-SAVIO-GOMES-JPEG.jpeg" alt="Logo Sávio Gomes" onerror="this.onerror=null; this.src='logo.jpeg';" class="w-full h-full rounded-full object-cover">
                 </div>
                 <div>
                     <h1 class="text-xl font-extrabold tracking-wider text-white">SÁVIO GOMES</h1>
@@ -44,7 +45,10 @@
                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-accentCyan/10 text-accentCyan border border-accentCyan/30 shadow-inner">
                     <span class="w-2 h-2 rounded-full bg-accentNeon mr-2 animate-pulse"></span> Sistema Online
                 </span>
-                <span class="text-xs bg-cardBorder text-gray-300 px-3 py-1.5 rounded-xl border border-cardBorder font-semibold">Painel Administrativo</span>
+                <!-- Botão de Login do Administrador -->
+                <button onclick="abrirLogin()" class="text-xs bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-xl border border-red-500 font-bold transition-all shadow-lg shadow-red-600/30 flex items-center gap-2">
+                    <span>🔐</span> Acesso Admin
+                </button>
             </div>
         </div>
     </header>
@@ -79,12 +83,11 @@
         <div class="bg-cardBg border border-cardBorder rounded-2xl shadow-2xl p-6 md:p-8">
             <div class="flex justify-between items-center mb-6 border-b border-cardBorder pb-4">
                 <h2 class="text-lg font-bold text-white tracking-wide">Módulos do Sistema</h2>
-                <span class="text-xs text-cyan-400 bg-cyan-950/40 px-3 py-1 rounded-full border border-cyan-800/50">Clique em qualquer módulo abaixo</span>
+                <span class="text-xs text-cyan-400 bg-cyan-950/40 px-3 py-1 rounded-full border border-cyan-800/50">Clique em qualquer módulo para lançamentos</span>
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-                <!-- Módulo 1 -->
-                <button onclick="abrirModulo('Cadastro de Alunos')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group focus:outline-none focus:ring-2 focus:ring-accentCyan">
+                <button onclick="abrirModulo('Cadastro de Alunos')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-accentCyan/10 text-accentCyan text-lg group-hover:bg-accentCyan group-hover:text-black transition-colors">📝</span>
                         <h4 class="font-bold text-white group-hover:text-accentCyan transition-colors">Cadastro de Alunos</h4>
@@ -92,8 +95,7 @@
                     <p class="text-xs text-gray-400 leading-relaxed">Registro de novos praticantes e dados.</p>
                 </button>
 
-                <!-- Módulo 2 -->
-                <button onclick="abrirModulo('Perfil do Aluno')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group focus:outline-none focus:ring-2 focus:ring-accentCyan">
+                <button onclick="abrirModulo('Perfil do Aluno')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-accentCyan/10 text-accentCyan text-lg group-hover:bg-accentCyan group-hover:text-black transition-colors">👤</span>
                         <h4 class="font-bold text-white group-hover:text-accentCyan transition-colors">Perfil do Aluno</h4>
@@ -101,8 +103,7 @@
                     <p class="text-xs text-gray-400 leading-relaxed">Histórico de presenças, faixas e graus.</p>
                 </button>
 
-                <!-- Módulo 3 -->
-                <button onclick="abrirModulo('Graduação')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group focus:outline-none focus:ring-2 focus:ring-accentCyan">
+                <button onclick="abrirModulo('Graduação')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-accentCyan/10 text-accentCyan text-lg group-hover:bg-accentCyan group-hover:text-black transition-colors">📊</span>
                         <h4 class="font-bold text-white group-hover:text-accentCyan transition-colors">Graduação</h4>
@@ -110,8 +111,7 @@
                     <p class="text-xs text-gray-400 leading-relaxed">Acompanhamento de evolução técnica.</p>
                 </button>
 
-                <!-- Módulo 4 -->
-                <button onclick="abrirModulo('Controle de Presença')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentNeon cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group focus:outline-none focus:ring-2 focus:ring-accentNeon">
+                <button onclick="abrirModulo('Controle de Presença')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentNeon cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-accentNeon/10 text-accentNeon text-lg group-hover:bg-accentNeon group-hover:text-black transition-colors">✅</span>
                         <h4 class="font-bold text-white group-hover:text-accentNeon transition-colors">Controle de Presença</h4>
@@ -119,8 +119,7 @@
                     <p class="text-xs text-gray-400 leading-relaxed">Chamada rápida diária.</p>
                 </button>
 
-                <!-- Módulo 5 -->
-                <button onclick="abrirModulo('Loja SM')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentNeon cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group focus:outline-none focus:ring-2 focus:ring-accentNeon">
+                <button onclick="abrirModulo('Loja SM')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentNeon cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-accentNeon/10 text-accentNeon text-lg group-hover:bg-accentNeon group-hover:text-black transition-colors">🛍️</span>
                         <h4 class="font-bold text-white group-hover:text-accentNeon transition-colors">Loja SM</h4>
@@ -128,8 +127,7 @@
                     <p class="text-xs text-gray-400 leading-relaxed">Controle de kimonos, rash guards e artigos.</p>
                 </button>
 
-                <!-- Módulo 6 -->
-                <button onclick="abrirModulo('Financeiro')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-purple-500 cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <button onclick="abrirModulo('Financeiro')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-purple-500 cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="p-2.5 rounded-lg bg-purple-500/10 text-purple-400 text-lg group-hover:bg-purple-500 group-hover:text-white transition-colors">💲</span>
                         <h4 class="font-bold text-white group-hover:text-purple-400 transition-colors">Financeiro</h4>
@@ -140,19 +138,19 @@
         </div>
     </main>
 
-    <!-- Modal Dinâmico -->
+    <!-- Modal Dinâmico de Lançamentos e Acessos -->
     <div id="modalModulo" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden z-50 flex items-center justify-center p-4">
         <div class="bg-cardBg border border-cardBorder rounded-2xl w-full max-w-lg p-6 shadow-2xl relative">
             <div class="flex justify-between items-center mb-4 border-b border-cardBorder pb-3">
-                <h3 id="modalTitulo" class="text-lg font-bold text-accentCyan">Módulo</h3>
+                <h3 id="modalTitulo" class="text-lg font-bold text-accentCyan">Painel</h3>
                 <button onclick="fecharModal()" class="text-gray-400 hover:text-white text-2xl font-bold px-2 py-0.5">&times;</button>
             </div>
-            <div id="modalConteudo" class="text-sm text-gray-300 mb-6 leading-relaxed">
-                Carregando...
+            <div id="modalConteudo" class="text-sm text-gray-300 mb-6 space-y-4">
+                <!-- Conteúdo injetado dinamicamente -->
             </div>
             <div class="flex justify-end gap-3">
-                <button onclick="fecharModal()" class="px-4 py-2 bg-cardBorder hover:bg-gray-700 text-white rounded-xl text-xs font-semibold transition-colors">Fechar</button>
-                <button onclick="alert('Registo guardado com sucesso!'); fecharModal();" class="px-4 py-2 bg-accentCyan text-black hover:bg-cyan-400 rounded-xl text-xs font-bold transition-colors shadow-lg shadow-cyan-500/20">Salvar Alterações</button>
+                <button onclick="fecharModal()" class="px-4 py-2 bg-cardBorder hover:bg-gray-700 text-white rounded-xl text-xs font-semibold transition-colors">Cancelar</button>
+                <button onclick="alert('Dados lançados e guardados com sucesso!'); fecharModal();" class="px-4 py-2 bg-accentCyan text-black hover:bg-cyan-400 rounded-xl text-xs font-bold transition-colors shadow-lg shadow-cyan-500/20">Salvar Registos</button>
             </div>
         </div>
     </div>
@@ -163,14 +161,42 @@
     </footer>
 
     <script>
-        function abrirModulo(nome) {
-            document.getElementById('modalTituloinnerText' || 'modalTitulo').innerText = nome;
+        function abrirLogin() {
+            document.getElementById('modalTitulo').innerText = "Painel de Acesso do Administrador";
             document.getElementById('modalConteudo').innerHTML = `
-                <div class="space-y-4">
-                    <p class="text-gray-200">Painel operacional ativo para <strong>${nome}</strong>.</p>
-                    <div class="bg-darkBg p-4 rounded-xl border border-cardBorder">
-                        <label class="block text-xs font-semibold text-gray-400 mb-1">Pesquisar / Registar Ação:</label>
-                        <input type="text" placeholder="Digite aqui..." class="w-full bg-cardBg border border-cardBorder rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-accentCyan">
+                <div class="space-y-3">
+                    <p class="text-xs text-gray-400">Insira as suas credenciais de coach/administrador para entrar:</p>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-1">E-mail ou Utilizador:</label>
+                        <input type="text" placeholder="ex: saviogomes@bjj.com" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-red-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-1">Palavra-passe:</label>
+                        <input type="password" placeholder="••••••••" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-red-500">
+                    </div>
+                </div>
+            `;
+            document.getElementById('modalModulo').classList.remove('hidden');
+        }
+
+        function abrirModulo(nome) {
+            document.getElementById('modalTitulo').innerText = `Gestão / Lançamento: ${nome}`;
+            document.getElementById('modalConteudo').innerHTML = `
+                <div class="space-y-3">
+                    <p class="text-xs text-gray-400">Insira os dados e informações para registo no sistema:</p>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-1">Nome do Aluno / Item / Descrição:</label>
+                        <input type="text" placeholder="Digite o nome completo..." class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accentCyan">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 mb-1">Categoria / Graduação:</label>
+                            <input type="text" placeholder="Ex: Faixa Preta / Adulto" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accentCyan">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 mb-1">Valor / Status:</label>
+                            <input type="text" placeholder="Ex: R$ 150,00 / Ativo" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-accentCyan">
+                        </div>
                     </div>
                 </div>
             `;
