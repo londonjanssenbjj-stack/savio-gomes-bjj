@@ -1,565 +1,346 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sávio Gomes - Sistema de Gestão BJJ & MMA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        darkBg: '#0A0A0C',
-                        cardBg: '#16161A',
-                        cardBorder: '#26262B',
-                        accentCyan: '#00F0FF',
-                        accentNeon: '#39FF14',
-                    }
-                }
-            }
+    <title>Painel Administrativo: Financeiro - Sávio Gomes BJJ</title>
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --modal-bg: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-muted: #aaaaaa;
+            --accent-green: #2ecc71;
+            --accent-red: #e74c3c;
+            --accent-blue: #3498db;
+            --border-color: #333;
         }
-    </script>
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .modal-container {
+            background-color: var(--modal-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            width: 750px;
+            max-width: 100%;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: var(--accent-blue);
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .section-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        /* Configuração da Chave PIX */
+        .pix-config-box {
+            background: #252525;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .pix-config-box label {
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--text-main);
+            white-space: nowrap;
+        }
+
+        .pix-config-box input {
+            flex: 1;
+            background: #111;
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 13px;
+        }
+
+        .btn-action {
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            transition: opacity 0.2s;
+        }
+
+        .btn-action:hover {
+            opacity: 0.9;
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .list-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+        }
+
+        /* Lista de Alunos Pendentes */
+        .student-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 250px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding-right: 5px;
+        }
+
+        .student-card {
+            background-color: #2a2a2a;
+            border-left: 5px solid var(--accent-red);
+            padding: 12px 15px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .student-info div:first-child {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .student-info div:last-child {
+            font-size: 12px;
+            color: var(--accent-red);
+            margin-top: 3px;
+        }
+
+        .student-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-pay {
+            background-color: var(--accent-red);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .btn-pay:hover {
+            background-color: #c0392b;
+        }
+
+        .btn-whatsapp {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #219653;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 20px;
+            font-style: italic;
+            background: #252525;
+            border-radius: 6px;
+        }
+
+        /* Rodapé do Modal */
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
 </head>
-<body class="bg-darkBg text-gray-100 font-sans antialiased min-h-screen flex flex-col selection:bg-accentCyan selection:text-black">
-    
-    <!-- Header com Logo Aumentada e Bem Destacada -->
-    <header class="bg-cardBg border-b border-cardBorder sticky top-0 z-50 backdrop-blur-md bg-opacity-95 shadow-2xl">
-        <div class="container mx-auto px-4 py-5 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-5">
-                <div class="relative w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-accentCyan via-accentNeon to-purple-500 shadow-xl shadow-cyan-500/30 flex-shrink-0 ring-4 ring-accentCyan/20">
-                    <img src="LOGO-SAVIO-GOMES-JPEG.jpeg" alt="Logo Sávio Gomes" onerror="this.onerror=null; this.src='logo.jpeg';" class="w-full h-full rounded-full object-cover">
-                </div>
-                <div>
-                    <h1 class="text-2xl font-extrabold tracking-wider text-white drop-shadow-md">SÁVIO GOMES</h1>
-                    <p class="text-xs text-accentCyan font-semibold tracking-wider uppercase">Jiu-Jitsu & MMA • Coach Since 2000</p>
-                </div>
-            </div>
-            <div class="flex items-center gap-3">
-                <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold bg-accentCyan/10 text-accentCyan border border-accentCyan/30 shadow-inner">
-                    <span class="w-2.5 h-2.5 rounded-full bg-accentNeon mr-2 animate-pulse"></span> Sistema Online
-                </span>
-                <button onclick="abrirLogin()" class="text-xs bg-red-600 hover:bg-red-500 text-white px-4 py-2.5 rounded-xl border border-red-500 font-bold transition-all shadow-lg shadow-red-600/30 flex items-center gap-2">
-                    <span>🔐</span> Acesso Admin
-                </button>
-            </div>
-        </div>
-    </header>
+<body>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8 flex-grow">
-        <!-- Módulos do Sistema -->
-        <div class="bg-cardBg border border-cardBorder rounded-2xl shadow-2xl p-6 md:p-8">
-            <div class="flex justify-between items-center mb-6 border-b border-cardBorder pb-4">
-                <h2 class="text-lg font-bold text-white tracking-wide">Módulos do Sistema</h2>
-                <span class="text-xs text-cyan-400 bg-cyan-950/40 px-3 py-1 rounded-full border border-cyan-800/50">Painel Integral do Administrador</span>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-                <!-- 1. Cadastro -->
-                <button onclick="abrirModulo('Cadastro')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
-                    <div class="flex items-center gap-3 mb-2">
-                        <span class="p-2.5 rounded-lg bg-accentCyan/10 text-accentCyan text-lg group-hover:bg-accentCyan group-hover:text-black transition-colors">📝</span>
-                        <h4 class="font-bold text-white group-hover:text-accentCyan transition-colors">Cadastro</h4>
-                    </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">Registro com até 6 graus, dados obrigatórios e biometria facial obrigatória no final.</p>
-                </button>
-
-                <!-- 2. Perfil do Aluno -->
-                <button onclick="abrirModulo('Perfil do Aluno')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
-                    <div class="flex items-center gap-3 mb-2">
-                        <span class="p-2.5 rounded-lg bg-accentCyan/10 text-accentCyan text-lg group-hover:bg-accentCyan group-hover:text-black transition-colors">👤</span>
-                        <h4 class="font-bold text-white group-hover:text-accentCyan transition-colors">Perfil do Aluno</h4>
-                    </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">Lista completa com foto, histórico, pesquisa avançada e opção de exclusão com rastreio.</p>
-                </button>
-
-                <!-- 3. Graduação -->
-                <button onclick="abrirModulo('Graduação')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentCyan cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
-                    <div class="flex items-center gap-3 mb-2">
-                        <span class="p-2.5 rounded-lg bg-accentCyan/10 text-accentCyan text-lg group-hover:bg-accentCyan group-hover:text-black transition-colors">📊</span>
-                        <h4 class="font-bold text-white group-hover:text-accentCyan transition-colors">Graduação</h4>
-                    </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">Data oficial da academia, frequência por presença, seleção de aluno e opção de graduar.</p>
-                </button>
-
-                <!-- 4. Controle de Presença -->
-                <button onclick="abrirModulo('Controle de Presença')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentNeon cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
-                    <div class="flex items-center gap-3 mb-2">
-                        <span class="p-2.5 rounded-lg bg-accentNeon/10 text-accentNeon text-lg group-hover:bg-accentNeon group-hover:text-black transition-colors">✅</span>
-                        <h4 class="font-bold text-white group-hover:text-accentNeon transition-colors">Controle de Presença</h4>
-                    </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">Fotos de biometria e chamada rápida integrada com a aba de graduação.</p>
-                </button>
-
-                <!-- 5. Loja SM -->
-                <button onclick="abrirModulo('Loja SM')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-accentNeon cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
-                    <div class="flex items-center gap-3 mb-2">
-                        <span class="p-2.5 rounded-lg bg-accentNeon/10 text-accentNeon text-lg group-hover:bg-accentNeon group-hover:text-black transition-colors">🛍️</span>
-                        <h4 class="font-bold text-white group-hover:text-accentNeon transition-colors">Loja SM</h4>
-                    </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">Produtos oficiais, status de pagamento (pago/não pago) e entrega com sinalização por cores.</p>
-                </button>
-
-                <!-- 6. Financeiro -->
-                <button onclick="abrirModulo('Financeiro')" class="w-full text-left bg-darkBg border border-cardBorder p-5 rounded-xl hover:border-purple-500 cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-md group">
-                    <div class="flex items-center gap-3 mb-2">
-                        <span class="p-2.5 rounded-lg bg-purple-500/10 text-purple-400 text-lg group-hover:bg-purple-500 group-hover:text-white transition-colors">💲</span>
-                        <h4 class="font-bold text-white group-hover:text-purple-400 transition-colors">Financeiro</h4>
-                    </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">Caixa, Pix automatizado, inadimplência e relatório de fechamento.</p>
-                </button>
-            </div>
-        </div>
-    </main>
-
-    <!-- Modal Dinâmico -->
-    <div id="modalModulo" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-cardBg border border-cardBorder rounded-2xl w-full max-w-2xl p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-4 border-b border-cardBorder pb-3">
-                <h3 id="modalTitulo" class="text-lg font-bold text-accentCyan">Painel</h3>
-                <button onclick="fecharModal()" class="text-gray-400 hover:text-white text-2xl font-bold px-2 py-0.5">&times;</button>
-            </div>
-            <div id="modalConteudo" class="text-sm text-gray-300 mb-6 space-y-4">
-                <!-- Conteúdo Dinâmico -->
-            </div>
-            <div class="flex justify-end gap-3 border-t border-cardBorder pt-4">
-                <button onclick="fecharModal()" class="px-4 py-2 bg-cardBorder hover:bg-gray-700 text-white rounded-xl text-xs font-semibold transition-colors">Fechar</button>
-                <button onclick="salvarCadastroSistema();" id="btnSalvarModal" class="px-4 py-2 bg-accentCyan text-black hover:bg-cyan-400 rounded-xl text-xs font-bold transition-colors shadow-lg shadow-cyan-500/20">Salvar Registros</button>
-            </div>
-        </div>
+<div class="modal-container">
+    <div class="modal-header">
+        <h2>Painel Administrativo: Financeiro</h2>
+        <button class="close-btn">&times;</button>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-cardBg border-t border-cardBorder py-6 text-center text-xs text-gray-500">
-        <p>Sávio Gomes Jiu-Jitsu & MMA - Todos os direitos reservados. Suporte Flávio: (67) 99162-8546</p>
-    </footer>
+    <div class="section-desc">Módulo completo de caixa, cobranças blindadas e relatórios baseados no perfil dos alunos:</div>
 
-    <script>
-        // Base de dados em memória para integração automática entre abas
-        let alunosCadastrados = [
-            { id: 1, nome: 'Carlos Silva', nascimento: '15/05/1995', whatsapp: '(67) 99999-1111', endereco: 'Rua Principal, 100', inicio: '10/01/2024', faixa: 'Faixa Azul', grau: '2 Graus', frequencia: '18 aulas', foto: '🥋', statusPagamento: 'Inadimplente', excluido: false },
-            { id: 2, nome: 'Mariana Santos', nascimento: '22/08/1998', whatsapp: '(67) 99999-2222', endereco: 'Av. Brasil, 500', inicio: '01/03/2025', faixa: 'Faixa Branca', grau: '4 Graus', frequencia: '22 aulas', foto: '🥋', statusPagamento: 'Adimplente', excluido: false },
-            { id: 3, nome: 'João Pedro', nascimento: '10/12/2000', whatsapp: '(67) 99999-3333', endereco: 'Rua Ladário, 45', inicio: '15/06/2023', faixa: 'Faixa Roxa', grau: '1 Grau', frequencia: '25 aulas', foto: '🥋', statusPagamento: 'Bolsista', excluido: false }
-        ];
+    <!-- Configuração da Chave PIX do Administrador -->
+    <div class="pix-config-box">
+        <label for="adminPix">Chave PIX Admin:</label>
+        <input type="text" id="adminPix" placeholder="Ex: 67999887766 ou email@dominio.com" value="12.345.678/0001-99">
+        <button class="btn-action" onclick="salvarPix()">Salvar Chave</button>
+    </div>
 
-        let vendasLoja = [
-            { produto: 'Kimono Oficial Sávio Gomes', tamanho: 'A2', comprador: 'Carlos Silva', valor: 'R$ 350,00', pago: 'Não Pago', entregue: 'Produto Não Entregue' },
-            { produto: 'Rash Guard', tamanho: 'G', comprador: 'Mariana Santos', valor: 'R$ 120,00', pago: 'Pago', entregue: 'Produto Entregue' }
-        ];
+    <div class="list-title">Alunos com Pagamento Pendente (Calculado via Perfil):</div>
+    
+    <!-- Lista Dinâmica de Inadimplentes -->
+    <div id="studentListContainer" class="student-list">
+        <!-- Os itens serão injetados via JavaScript -->
+    </div>
 
-        function abrirLogin() {
-            document.getElementById('modalTitulo').innerText = "🛡️ Módulo de Segurança e Acesso Restrito";
-            document.getElementById('modalConteudo').innerHTML = `
-                <div class="space-y-4">
-                    <p class="text-xs text-gray-400">Credenciais exclusivas da administração:</p>
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-300 mb-1">Login (FLAVIA):</label>
-                        <input type="text" value="FLAVIA" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-300 mb-1">Senha (12345FG):</label>
-                        <input type="password" value="12345FG" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                    </div>
-                    <div class="bg-darkBg p-3 rounded-xl border border-cardBorder text-xs text-cyan-400">
-                        <p><strong>Primeiro Acesso:</strong> Redefinição obrigatória de credenciais.</p>
-                    </div>
-                    <div class="flex justify-between items-center pt-2 text-xs">
-                        <a href="mailto:flavinha_vitorio@hotmail.com" class="text-accentCyan hover:underline">Esqueceu a senha? (Enviar para flavinha_vitorio@hotmail.com)</a>
-                        <span class="text-gray-400">Suporte: (67) 99162-8546 (Flavia)</span>
-                    </div>
+    <div class="modal-footer">
+        <button class="btn-secondary">Fechar</button>
+        <button class="btn-primary">Salvar Registros</button>
+    </div>
+</div>
+
+<script>
+    // Simulação de dados vindos da Aba Perfil e Cadastro de Início de Treino
+    let alunosFinanceiro = [
+        { id: 1, nome: "Carlos Silva", telefone: "5567999991111", dataInicio: "2026-08-20", status: "Pendente" },
+        { id: 2, nome: "Mariana Santos", telefone: "5567999992222", dataInicio: "2026-09-10", status: "Pago" },
+        { id: 3, nome: "Roberto Mendes", telefone: "5567999993333", dataInicio: "2026-07-15", status: "Pendente" }
+    ];
+
+    function calcularVencimento(dataInicioStr) {
+        let dataInicio = new Date(dataInicioStr + 'T00:00:00');
+        let mes = dataInicio.getMonth();
+        let ano = dataInicio.getFullYear();
+        
+        // Descobre quantos dias tem o mês do ciclo atual (30 ou 31 dias)
+        let diasNoMes = new Date(ano, mes + 1, 0).getDate();
+        
+        let vencimento = new Date(dataInicio);
+        vencimento.setDate(vencimento.getDate() + diasNoMes);
+        
+        return vencimento;
+    }
+
+    function renderizarLista() {
+        const container = document.getElementById('studentListContainer');
+        container.innerHTML = '';
+
+        // Filtra para aparecer SOMENTE o aluno pendente de pagamento
+        let pendentes = alunosFinanceiro.filter(a => a.status === "Pendente");
+
+        if (pendentes.length === 0) {
+            container.innerHTML = '<div class="empty-state">Nenhum aluno com pagamento pendente no momento. Parabéns!</div>';
+            return;
+        }
+
+        pendentes.forEach(aluno => {
+            let vencimento = calcularVencimento(aluno.dataInicio);
+            let vencimentoFormatado = vencimento.toLocaleDateString('pt-BR');
+            let chavePix = document.getElementById('adminPix').value;
+
+            // Texto customizado para cobrança via WhatsApp
+            let mensagemWhats = encodeURIComponent(`Olá ${aluno.nome}, tudo bem? Passando para lembrar sobre a mensalidade do Jiu-Jitsu com vencimento em ${vencimentoFormatado}. Segue a chave PIX para pagamento: ${chavePix}. Favor enviar o comprovante após realizar.`);
+            let linkWhats = `https://wa.me/${aluno.telefone}?text=${mensagemWhats}`;
+
+            let card = document.createElement('div');
+            card.className = 'student-card';
+            card.innerHTML = `
+                <div class="student-info">
+                    <div>${aluno.nome}</div>
+                    <div>Pendente (Vencimento: ${vencimentoFormatado})</div>
+                </div>
+                <div class="student-actions">
+                    <a href="${linkWhats}" target="_blank" class="btn-whatsapp">💬 Cobrar WhatsApp</a>
+                    <button class="btn-pay" onclick="darBaixa(${aluno.id})">Marcar como Pago</button>
                 </div>
             `;
-            document.getElementById('modalModulo').classList.remove('hidden');
+            container.appendChild(card);
+        });
+    }
+
+    function darBaixa(id) {
+        let aluno = alunosFinanceiro.find(a => a.id === id);
+        if (aluno) {
+            aluno.status = "Pago"; // Ao clicar, muda o status e sai da lista de débitos
+            renderizarLista();
         }
+    }
 
-        function abrirModulo(nome) {
-            document.getElementById('modalTitulo').innerText = `Painel Administrativo: ${nome}`;
-            let html = '';
+    function salvarPix() {
+        let chave = document.getElementById('adminPix').value;
+        alert("Chave PIX salva com sucesso: " + chave);
+        renderizarLista();
+    }
 
-            if (nome === 'Cadastro') {
-                html = `
-                    <form id="formCadastroAluno" class="space-y-3" onsubmit="event.preventDefault();">
-                        <p class="text-xs text-gray-400">Preencha os dados obrigatórios. O cadastro só finaliza com a captura obrigatória da Biometria Facial ao final:</p>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-300 mb-1">Nome Completo *</label>
-                            <input type="text" id="cadNome" required placeholder="Nome completo" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-300 mb-1">Data de Nascimento *</label>
-                                <input type="date" id="cadNasc" required class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-300 mb-1">WhatsApp *</label>
-                                <input type="text" id="cadWpp" required placeholder="(67) 99999-9999" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-300 mb-1">Endereço *</label>
-                            <input type="text" id="cadEnd" required placeholder="Endereço residencial" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-300 mb-1">Data de Início do Treino *</label>
-                                <input type="date" id="cadInicio" required class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-300 mb-1">Seleção de Faixa</label>
-                                <select id="cadFaixa" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                                    <option>Faixa Branca</option><option>Faixa Azul</option><option>Faixa Roxa</option><option>Faixa Marrom</option><option>Faixa Preta</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-300 mb-1">Grau (Até 6 Graus)</label>
-                            <select id="cadGrau" class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                                <option>0 Graus</option><option>1 Grau</option><option>2 Graus</option><option>3 Graus</option><option>4 Graus</option><option>5 Graus</option><option>6 Graus</option>
-                            </select>
-                        </div>
-                        <div class="border-t border-cardBorder pt-3 space-y-2">
-                            <label class="block text-xs font-bold text-accentCyan">Condições Especiais / Aula Experimental / Bolsista:</label>
-                            <div class="grid grid-cols-2 gap-2 text-xs">
-                                <div>
-                                    <span class="text-gray-400 block mb-1">Aula Experimental?</span>
-                                    <select id="cadExp" class="w-full bg-darkBg border border-cardBorder rounded-lg px-2 py-1 text-white"><option>Não</option><option>Sim</option></select>
-                                </div>
-                                <div>
-                                    <span class="text-gray-400 block mb-1">Pagar Experimental?</span>
-                                    <select id="cadPagarExp" class="w-full bg-darkBg border border-cardBorder rounded-lg px-2 py-1 text-white"><option>Não</option><option>Sim</option></select>
-                                </div>
-                                <div>
-                                    <span class="text-gray-400 block mb-1">Bolsista?</span>
-                                    <select id="cadBolsa" class="w-full bg-darkBg border border-cardBorder rounded-lg px-2 py-1 text-white"><option>Não</option><option>Sim</option></select>
-                                </div>
-                                <div>
-                                    <span class="text-gray-400 block mb-1">Pagar Bolsista?</span>
-                                    <select id="cadPagarBolsa" class="w-full bg-darkBg border border-cardBorder rounded-lg px-2 py-1 text-white"><option>Não</option><option>Sim</option></select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-darkBg p-4 rounded-xl border border-cardBorder text-center space-y-2">
-                            <label class="block text-xs font-bold text-accentNeon">Obrigatório: Biometria Facial para Finalizar Cadastro</label>
-                            <button type="button" onclick="capturarBiometria()" class="w-full bg-accentNeon/10 border border-accentNeon/30 hover:bg-accentNeon/20 text-accentNeon font-bold py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-2">
-                                <span>📷</span> Capturar Biometria Facial no Celular / Tablet
-                            </button>
-                            <p id="statusBiometria" class="text-[11px] text-gray-400">Status: Pendente de Captura Facial</p>
-                        </div>
-                    </form>
-                `;
-            } else if (nome === 'Perfil do Aluno') {
-                html = `
-                    <div class="space-y-4">
-                        <div class="flex gap-2">
-                            <input type="text" id="inputPesquisaPerfil" oninput="filtrarPerfis()" placeholder="Pesquisar aluno por nome..." class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                        </div>
-                        <div id="listaPerfisContainer" class="space-y-3 max-h-96 overflow-y-auto">
-                            ${renderizarListaPerfis(alunosCadastrados)}
-                        </div>
-                    </div>
-                `;
-            } else if (nome === 'Graduação') {
-                html = `
-                    <div class="space-y-4">
-                        <div class="bg-darkBg p-4 rounded-xl border border-cardBorder space-y-2">
-                            <label class="block text-xs font-bold text-accentCyan">Data da Graduação Oficial da Academia:</label>
-                            <input type="date" value="2026-12-15" class="w-full bg-cardBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-300 mb-1">Selecionar Aluno:</label>
-                            <select class="w-full bg-darkBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                                ${alunosCadastrados.map(a => `<option ${a.excluido ? 'disabled' : ''}>${a.nome} (${a.faixa} - ${a.grau})${a.excluido ? '[CADASTRO EXCLUÍDO]' : ''}</option>`).join('')}
-                            </select>
-                        </div>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left text-xs">
-                                <thead class="border-b border-cardBorder text-gray-400">
-                                    <tr>
-                                        <th class="pb-2">Nome do Aluno</th>
-                                        <th class="pb-2">Início Treino</th>
-                                        <th class="pb-2">Faixa & Grau</th>
-                                        <th class="pb-2">Frequência</th>
-                                        <th class="pb-2">Ação na Graduação</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-cardBorder text-gray-300">
-                                    ${alunosCadastrados.map(a => `
-                                        <tr class="${a.excluido ? 'bg-red-950/20 opacity-80' : ''}">
-                                            <td class="py-2.5 font-bold ${a.excluido ? 'text-red-400' : 'text-white'}">
-                                                ${a.nome}${a.excluido ? '<span class="ml-2 px-1.5 py-0.5 rounded text-[9px] bg-red-900/50 text-red-300 border border-red-700/50">CADASTRO EXCLUÍDO</span>' : ''}
-                                            </td>
-                                            <td class="py-2.5">${a.inicio}</td>
-                                            <td class="py-2.5 text-accentCyan">${a.faixa} (${a.grau})</td>
-                                            <td class="py-2.5 text-accentNeon">${a.frequencia}</td>
-                                            <td class="py-2.5">
-                                                <select class="bg-darkBg border border-cardBorder rounded-lg px-2 py-1 text-white text-[11px]" ${a.excluido ? 'disabled' : ''}>
-                                                    <option>Graduar Faixa</option>
-                                                    <option>Graduar Grau</option>
-                                                    <option selected>Não Graduar Ambos</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                    `).join('')}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                `;
-            } else if (nome === 'Controle de Presença') {
-                html = `
-                    <div class="space-y-3">
-                        <p class="text-xs text-gray-400">Lista oficial com fotos biométricas. Alunos com cadastro excluído aparecem sinalizados, mas mantêm histórico:</p>
-                        <div class="space-y-2 max-h-96 overflow-y-auto">
-                            ${alunosCadastrados.map((a, i) => `
-                                <div class="flex justify-between items-center bg-darkBg p-3 rounded-xl border ${a.excluido ? 'border-red-900/50 bg-red-950/10' : 'border-cardBorder'}">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-10 h-10 rounded-full bg-cardBorder flex items-center justify-center text-lg">${a.foto}</div>
-                                        <div>
-                                            <p class="font-bold ${a.excluido ? 'text-red-400' : 'text-white'} text-xs">
-                                                ${a.nome}${a.excluido ? '<span class="ml-2 px-1.5 py-0.5 rounded text-[9px] bg-red-900/50 text-red-300 border border-red-700/50">CADASTRO EXCLUÍDO</span>' : ''}
-                                            </p>
-                                            <p class="text-[10px] text-accentCyan">${a.faixa} •${a.grau}</p>
-                                        </div>
-                                    </div>
-                                    <button onclick="darPresenca(${i})" id="btnPresenca_${i}" class="bg-cardBorder text-gray-300 px-3 py-1.5 rounded-lg text-xs hover:bg-accentNeon hover:text-black transition-colors font-bold" ${a.excluido ? 'disabled class="opacity-50 cursor-not-allowed bg-cardBorder text-gray-500 px-3 py-1.5 rounded-lg text-xs"' : ''}>Dar Presença</button>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
-            } else if (nome === 'Loja SM') {
-                html = `
-                    <div class="space-y-4">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-darkBg p-4 rounded-xl border border-cardBorder">
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-300 mb-1">Produto Oficial</label>
-                                <select id="lojaProduto" class="w-full bg-cardBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                                    <option>Kimono Oficial Sávio Gomes</option><option>Faixa Bordada</option><option>Camiseta Oficial</option><option>Rash Guard</option><option>Boné SM</option><option>Brasão da Academia (Grande)</option><option>Brasão da Academia (Pequeno)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-300 mb-1">Tamanho / Opção</label>
-                                <input type="text" id="lojaTam" placeholder="Ex: A2 / G / Único" class="w-full bg-cardBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-300 mb-1">Nome do Comprador</label>
-                                <input type="text" id="lojaComprador" placeholder="Nome do aluno" class="w-full bg-cardBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-300 mb-1">Valor (R$)</label>
-                                <input type="text" id="lojaValor" placeholder="R$ 0,00" class="w-full bg-cardBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-300 mb-1">Status Pagamento</label>
-                                <select id="lojaPagamento" class="w-full bg-cardBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                                    <option value="Pago">Pago</option>
-                                    <option value="Não Pago">Não Pago</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-300 mb-1">Status Entrega</label>
-                                <select id="lojaEntrega" class="w-full bg-cardBg border border-cardBorder rounded-xl px-3 py-2 text-white text-sm">
-                                    <option value="Produto Entregue">Produto Entregue</option>
-                                    <option value="Produto Não Entregue">Produto Não Entregue</option>
-                                </select>
-                            </div>
-                            <div class="sm:col-span-2 pt-2">
-                                <button type="button" onclick="adicionarVendaLoja()" class="w-full bg-accentCyan text-black hover:bg-cyan-400 py-2 rounded-xl text-xs font-bold transition-all">Registar Venda na Loja</button>
-                            </div>
-                        </div>
+    // Inicializa a listagem ao carregar
+    window.onload = function() {
+        renderizarLista();
+    };
+</script>
 
-                        <div class="space-y-2">
-                            <h5 class="text-xs font-bold text-white">Lista de Compradores e Status:</h5>
-                            <div class="space-y-2 max-h-60 overflow-y-auto">
-                                ${vendasLoja.map(v => {
-                                    let corBg = v.pago === 'Pago' ? 'bg-green-950/30 border-green-900/50' : 'bg-red-950/30 border-red-900/50';
-                                    let textoPago = v.pago === 'Pago' ? '🟢 Pago' : '🔴 Não Pago';
-                                    let textoEntrega = v.entregue === 'Produto Entregue' ? '🟢 Entregue' : '🟠 Não Entregue';
-                                    return `
-                                        <div class="flex justify-between items-center ${corBg} border p-3 rounded-xl text-xs">
-                                            <div>
-                                                <p class="font-bold text-white">${v.comprador} — ${v.produto} (${v.tamanho})</p>
-                                                <p class="text-[11px] text-gray-300">Valor: ${v.valor}</p>
-                                            </div>
-                                            <div class="text-right space-x-2">
-                                                <span class="px-2 py-1 rounded font-bold">${textoPago}</span>
-                                                <span class="px-2 py-1 rounded font-bold text-amber-400">${textoEntrega}</span>
-                                            </div>
-                                        </div>
-                                    `;
-                                }).join('')}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else if (nome === 'Financeiro') {
-                html = `
-                    <div class="space-y-4">
-                        <p class="text-xs text-gray-400">Módulo completo de caixa, cobranças blindadas e relatórios:</p>
-                        <div class="grid grid-cols-2 gap-3">
-                            <button onclick="alert('Código Pix Copia e Cola gerado com sucesso!')" class="bg-accentCyan/10 border border-accentCyan/30 text-accentCyan hover:bg-accentCyan/20 py-2 rounded-xl text-xs font-bold transition-all">⚡ Gerar Pix Automatizado</button>
-                            <button onclick="alert('Alerta de cobrança enviado via WhatsApp com sucesso!')" class="bg-accentNeon/10 border border-accentNeon/30 text-accentNeon hover:bg-accentNeon/20 py-2 rounded-xl text-xs font-bold transition-all">💬 Cobrança WhatsApp</button>
-                        </div>
-                        <div class="space-y-2">
-                            <h5 class="text-xs font-bold text-white">Lista de Alunos e Inadimplência:</h5>
-                            <div class="space-y-1.5 text-xs">
-                                <div class="flex justify-between items-center bg-red-950/30 border border-red-900/50 p-2.5 rounded-lg">
-                                    <span class="text-red-400 font-semibold">🔴 Carlos Silva (Débito: 2 meses em atraso)</span>
-                                    <button onclick="alert('Pagamento confirmado! Aluno removido da lista de débitos.')" class="bg-red-600 text-white px-2.5 py-1 rounded text-[10px] font-bold">Dar Baixa / Pagar</button>
-                                </div>
-                                <div class="flex justify-between items-center bg-green-950/30 border border-green-900/50 p-2.5 rounded-lg">
-                                    <span class="text-green-400 font-semibold">🟢 Mariana Santos (Adimplente)</span>
-                                    <span class="text-gray-400">Pago</span>
-                                </div>
-                                <div class="flex justify-between items-center bg-green-950/30 border border-green-900/50 p-2.5 rounded-lg">
-                                    <span class="text-green-400 font-semibold">🟢 Bolsista: João Pedro (Isento)</span>
-                                    <span class="text-gray-400">Bolsista</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="border-t border-cardBorder pt-3 space-y-2">
-                            <h5 class="text-xs font-bold text-white">Relatório de Fechamento Personalizado:</h5>
-                            <div class="grid grid-cols-2 gap-2">
-                                <input type="date" class="bg-darkBg border border-cardBorder rounded-lg px-2 py-1.5 text-white text-xs">
-                                <input type="date" class="bg-darkBg border border-cardBorder rounded-lg px-2 py-1.5 text-white text-xs">
-                            </div>
-                            <button onclick="alert('Balanço gerado com sucesso! Entradas, Custos e Resultado Líquido calculados.')" class="w-full bg-purple-600 hover:bg-purple-500 text-white py-2 rounded-xl text-xs font-bold transition-all">📊 Gerar Fechamento de Caixa</button>
-                        </div>
-                    </div>
-                `;
-            }
-
-            document.getElementById('modalConteudo').innerHTML = html;
-            document.getElementById('modalModulo').classList.remove('hidden');
-        }
-
-        let biometriaConfirmada = false;
-
-        function capturarBiometria() {
-            biometriaConfirmada = true;
-            document.getElementById('statusBiometria').innerHTML = "Status: ✅ Biometria Facial Capturada com Sucesso no Dispositivo!";
-            document.getElementById('statusBiometria').className = "text-[11px] text-accentNeon font-bold";
-            alert("Biometria Facial capturada com sucesso pela câmara do telemóvel/tablet!");
-        }
-
-        function salvarCadastroSistema() {
-            let nomeInput = document.getElementById('cadNome');
-            if (nomeInput) {
-                if (!biometriaConfirmada) {
-                    alert("Atenção: O cadastro só pode ser finalizado após a captura obrigatória da Biometria Facial!");
-                    return;
-                }
-                let novoAluno = {
-                    id: Date.now(),
-                    nome: nomeInput.value,
-                    nascimento: document.getElementById('cadNasc').value,
-                    whatsapp: document.getElementById('cadWpp').value,
-                    endereco: document.getElementById('cadEnd').value,
-                    inicio: document.getElementById('cadInicio').value,
-                    faixa: document.getElementById('cadFaixa').value,
-                    grau: document.getElementById('cadGrau').value,
-                    frequencia: '1 aula',
-                    foto: '🥋',
-                    statusPagamento: 'Adimplente',
-                    excluido: false
-                };
-                alunosCadastrados.push(novoAluno);
-                alert("Aluno cadastrado com sucesso! Integrado automaticamente nas abas Perfil, Graduação e Presença.");
-                fecharModal();
-            } else {
-                alert("Operação efetuada com sucesso!");
-                fecharModal();
-            }
-        }
-
-        function renderizarListaPerfis(lista) {
-            return lista.map(a => `
-                <div class="bg-darkBg p-4 rounded-xl border ${a.excluido ? 'border-red-900/50 bg-red-950/10' : 'border-cardBorder'} flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                    <div class="flex items-center gap-4">
-                        <div class="w-14 h-14 rounded-full bg-cardBorder flex items-center justify-center text-2xl flex-shrink-0">${a.foto}</div>
-                        <div>
-                            <div class="flex items-center gap-2">
-                                <h4 class="font-bold text-white text-base">${a.nome}</h4>
-                                ${a.excluido ? '<span class="px-2 py-0.5 rounded text-[10px] bg-red-900/50 text-red-300 border border-red-700/50 font-bold">CADASTRO EXCLUÍDO</span>' : ''}
-                            </div>
-                            <p class="text-xs text-accentCyan">${a.faixa} • ${a.grau}</p>
-                            <p class="text-xs text-gray-400">Início: ${a.inicio} | WhatsApp: ${a.whatsapp}</p>
-                            <p class="text-xs text-accentNeon">Presenças Computadas: ${a.frequencia}</p>
-                        </div>
-                    </div>
-                    <div>
-                        ${!a.excluido ? `
-                            <button onclick="excluirCadastroAluno(${a.id})" class="bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-white border border-red-500/50 px-3 py-1.5 rounded-xl text-xs font-bold transition-all">
-                                🗑️ Excluir Cadastro
-                            </button>
-                        ` : `
-                            <span class="text-xs text-gray-500 italic">Registro Inativo</span>
-                        `}
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function excluirCadastroAluno(id) {
-            if (confirm("Tem certeza que deseja excluir o cadastro deste aluno? O registo será mantido nas outras abas com a sinalização de cadastro excluído.")) {
-                let aluno = alunosCadastrados.find(a => a.id === id);
-                if (aluno) {
-                    aluno.excluido = true;
-                    alert("Cadastro excluído com sucesso. O nome continuará visível nas outras abas sinalizado como cadastro excluído.");
-                    // Atualiza a visualização do perfil se o modal estiver aberto
-                    let input = document.getElementById('inputPesquisaPerfil');
-                    if (input) {
-                        filtrarPerfis();
-                    }
-                }
-            }
-        }
-
-        function darPresenca(index) {
-            if (alunosCadastrados[index].excluido) {
-                alert("Atenção: Este aluno possui o cadastro excluído e não pode registrar novas presenças.");
-                return;
-            }
-            let btn = document.getElementById(`btnPresenca_${index}`);
-            btn.innerText = 'Presença Confirmada!';
-            btn.className = 'bg-green-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold';
-            alert(`Presença de ${alunosCadastrados[index].nome} confirmada e alimentada automaticamente na aba Graduação!`);
-        }
-
-        function filtrarPerfis() {
-            let termo = document.getElementById('inputPesquisaPerfil').value.toLowerCase();
-            let container = document.getElementById('listaPerfisContainer');
-            let filtrados = alunosCadastrados.filter(a => a.nome.toLowerCase().includes(termo));
-            container.innerHTML = renderizarListaPerfis(filtrados);
-        }
-
-        function adicionarVendaLoja() {
-            let prod = document.getElementById('lojaProduto').value;
-            let tam = document.getElementById('lojaTam').value || 'Único';
-            let comp = document.getElementById('lojaComprador').value;
-            let val = document.getElementById('lojaValor').value;
-            let pag = document.getElementById('lojaPagamento').value;
-            let ent = document.getElementById('lojaEntrega').value;
-
-            if (!comp) {
-                alert("Por favor, insira o nome do aluno comprador.");
-                return;
-            }
-
-            vendasLoja.push({ produto: prod, tamanho: tam, comprador: comp, valor: val || 'R$ 0,00', pago: pag, entregue: ent });
-            alert("Venda registada com sucesso na Loja SM!");
-            abrirModulo('Loja SM');
-        }
-
-        function fecharModal() {
-            document.getElementById('modalModulo').classList.add('hidden');
-            biometriaConfirmada = false;
-        }
-    </script>
 </body>
 </html>
