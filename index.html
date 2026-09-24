@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Administrativo: Financeiro</title>
+    <title>Sistema de Gestão - Sávio Gomes BJJ</title>
     <style>
         :root {
             --bg-dark: #121212;
@@ -23,11 +23,36 @@
             margin: 0;
             padding: 20px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
         }
 
+        /* Barra de Navegação de Abas */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background-color: #252525;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background-color: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
+        }
+
+        /* Container Principal / Modais */
         .modal-container {
             background-color: var(--modal-bg);
             border: 1px solid var(--border-color);
@@ -36,6 +61,11 @@
             max-width: 100%;
             padding: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            display: none;
+        }
+
+        .modal-container.active {
+            display: block;
         }
 
         .modal-header {
@@ -53,21 +83,41 @@
             font-size: 20px;
         }
 
-        .close-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 20px;
-            cursor: pointer;
-        }
-
         .section-desc {
             font-size: 13px;
             color: var(--text-muted);
             margin-bottom: 15px;
         }
 
-        /* Configuração da Chave PIX do Administrador */
+        /* Aba Perfil: Estilos */
+        .profile-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--text-muted);
+        }
+
+        .form-group input {
+            background: #111;
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        /* Aba Financeiro: Configuração da Chave PIX */
         .pix-config-box {
             background: #252525;
             padding: 12px 15px;
@@ -109,12 +159,6 @@
 
         .btn-action:hover {
             opacity: 0.9;
-        }
-
-        .toolbar {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
         }
 
         .list-title {
@@ -284,60 +328,143 @@
 </head>
 <body>
 
-<div class="modal-container">
-    <div class="modal-header">
-        <h2>Painel Administrativo: Financeiro</h2>
-        <button class="close-btn">&times;</button>
+    <!-- Navegação de Abas do Sistema -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="trocarAba('perfil')">Aba Perfil</button>
+        <button class="tab-btn" onclick="trocarAba('financeiro')">Painel Financeiro</button>
     </div>
 
-    <div class="section-desc">Módulo completo de caixa, cobranças blindadas e relatórios:</div>
-
-    <!-- 1. Campo de Configuração da Chave PIX do Administrador -->
-    <div class="pix-config-box">
-        <label for="adminPix">Chave PIX:</label>
-        <input type="text" id="adminPix" placeholder="Informe a chave PIX para cobrança" value="contato@salaoglam.com.br">
-        <button class="btn-action" onclick="salvarPix()">Salvar Chave</button>
-    </div>
-
-    <div class="list-title">Lista de Alunos Pendentes (Inadimplência):</div>
-    
-    <!-- 2 e 3. Lista onde aparecem SOMENTE os alunos pendentes mapeados da Aba Perfil -->
-    <div id="studentListContainer" class="student-list">
-        <!-- Renderizado dinamicamente pelo JavaScript -->
-    </div>
-
-    <!-- Seção de Relatório de Fechamento -->
-    <div class="report-section">
-        <label>Relatório de Fechamento Personalizado:</label>
-        <div class="date-inputs">
-            <input type="date" id="dataInicioRelatorio">
-            <input type="date" id="dataFimRelatorio">
+    <!-- ================= ABA PERFIL ================= -->
+    <div id="aba-perfil" class="modal-container active">
+        <div class="modal-header">
+            <h2>Perfil do Aluno</h2>
         </div>
-        <button class="btn-full" onclick="gerarRelatorio()">Gerar Fechamento de Caixa</button>
+        <div class="section-desc">Dados cadastrais e histórico de início dos treinos do aluno:</div>
+        
+        <div class="profile-form">
+            <div class="form-group">
+                <label>Nome Completo:</label>
+                <input type="text" id="perfilNome" value="Carlos Silva">
+            </div>
+            <div class="form-group">
+                <label>Telefone / WhatsApp (com DDI e DDD):</label>
+                <input type="text" id="perfilTelefone" value="5567999991111">
+            </div>
+            <div class="form-group">
+                <label>Data de Início dos Treinos:</label>
+                <input type="date" id="perfilDataInicio" value="2026-08-20">
+            </div>
+        </div>
+
+        <div class="modal-footer" style="margin-top: 20px;">
+            <button class="btn-secondary">Cancelar</button>
+            <button class="btn-primary" onclick="salvarPerfil()">Salvar Perfil</button>
+        </div>
     </div>
 
-    <div class="modal-footer">
-        <button class="btn-secondary">Fechar</button>
-        <button class="btn-primary">Salvar Registros</button>
+    <!-- ================= ABA FINANCEIRO ================= -->
+    <div id="aba-financeiro" class="modal-container">
+        <div class="modal-header">
+            <h2>Painel Administrativo: Financeiro</h2>
+        </div>
+
+        <div class="section-desc">Módulo completo de caixa, cobranças blindadas e relatórios:</div>
+
+        <!-- Campo de Configuração da Chave PIX do Administrador -->
+        <div class="pix-config-box">
+            <label for="adminPix">Chave PIX Admin:</label>
+            <input type="text" id="adminPix" placeholder="Informe a chave PIX para pagamento" value="contato@salaoglam.com.br">
+            <button class="btn-action" onclick="salvarPix()">Salvar Chave</button>
+        </div>
+
+        <div class="list-title">Alunos com Pagamento Pendente (Inadimplência):</div>
+        
+        <!-- Lista de Alunos Pendentes (Sincronizada com Perfil e calculada por vencimento) -->
+        <div id="studentListContainer" class="student-list">
+            <!-- Renderizado dinamicamente via Script -->
+        </div>
+
+        <!-- Seção de Relatório de Fechamento -->
+        <div class="report-section">
+            <label>Relatório de Fechamento Personalizado:</label>
+            <div class="date-inputs">
+                <input type="date" id="dataInicioRelatorio">
+                <input type="date" id="dataFimRelatorio">
+            </div>
+            <button class="btn-full" onclick="gerarRelatorio()">Gerar Fechamento de Caixa</button>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-secondary">Fechar</button>
+            <button class="btn-primary">Salvar Registros</button>
+        </div>
     </div>
-</div>
 
 <script>
-    // Dados simulados integrando a "Aba Perfil" (Data de Início) e "Financeiro" (Status)
-    let alunosFinanceiro = [
-        { id: 1, nome: "Carlos Silva", telefone: "5567999991111", dataInicio: "2026-08-20", status: "Pendente" },
-        { id: 2, nome: "Mariana Santos", telefone: "5567999992222", dataInicio: "2026-09-10", status: "Pago" },
-        { id: 3, nome: "Roberto Mendes", telefone: "5567999993333", dataInicio: "2026-07-15", status: "Pendente" }
+    // Banco de dados centralizado simulando os registros integrados
+    let dadosAlunos = [
+        { 
+            id: 1, 
+            nome: "Carlos Silva", 
+            telefone: "5567999991111", 
+            dataInicio: "2026-08-20", 
+            status: "Pendente" 
+        },
+        { 
+            id: 2, 
+            nome: "Mariana Santos", 
+            telefone: "5567999992222", 
+            dataInicio: "2026-09-10", 
+            status: "Pago" 
+        },
+        { 
+            id: 3, 
+            nome: "Roberto Mendes", 
+            telefone: "5567999993333", 
+            dataInicio: "2026-07-15", 
+            status: "Pendente" 
+        }
     ];
 
-    // Função que calcula a data de início mais 30 ou 31 dias dependendo do mês correspondente
+    // Função de navegação entre as abas
+    function trocarAba(aba) {
+        document.querySelectorAll('.modal-container').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+        if (aba === 'perfil') {
+            document.getElementById('aba-perfil').classList.add('active');
+            document.querySelectorAll('.tab-btn')[0].classList.add('active');
+        } else if (aba === 'financeiro') {
+            document.getElementById('aba-financeiro').classList.add('active');
+            document.querySelectorAll('.tab-btn')[1].classList.add('active');
+            renderizarListaFinanceiro();
+        }
+    }
+
+    // Salva as alterações feitas na aba Perfil para refletir no financeiro
+    function salvarPerfil() {
+        let nome = document.getElementById('perfilNome').value;
+        let telefone = document.getElementById('perfilTelefone').value;
+        let dataInicio = document.getElementById('perfilDataInicio').value;
+
+        // Atualiza o primeiro aluno como exemplo de vínculo direto
+        if(dadosAlunos.length > 0) {
+            dadosAlunos[0].nome = nome;
+            dadosAlunos[0].telefone = telefone;
+            dadosAlunos[0].dataInicio = dataInicio;
+        }
+
+        alert("Alterações do perfil salvas com sucesso!");
+        trocarAba('financeiro');
+    }
+
+    // Calcula data de início + 30 ou 31 dias do mês correspondente
     function calcularVencimento(dataInicioStr) {
         let dataInicio = new Date(dataInicioStr + 'T00:00:00');
         let mes = dataInicio.getMonth();
         let ano = dataInicio.getFullYear();
         
-        // Descobre o número exato de dias do mês do ciclo (30 ou 31 dias)
-        let diasNoMes = new Date(ano, mes + 1, 0).getDate();
+        let diasNoMes = new Date(ano, mes + 1, 0).getDate(); // 30 ou 31 dias
         
         let vencimento = new Date(dataInicio);
         vencimento.setDate(vencimento.getDate() + diasNoMes);
@@ -345,15 +472,16 @@
         return vencimento;
     }
 
-    // Renderiza dinamicamente apenas os alunos com status 'Pendente'
-    function renderizarLista() {
+    // Renderiza SOMENTE os alunos pendentes na aba financeiro
+    function renderizarListaFinanceiro() {
         const container = document.getElementById('studentListContainer');
         container.innerHTML = '';
 
-        let pendentes = alunosFinanceiro.filter(a => a.status === "Pendente");
+        // Filtra para exibir apenas quem está com status 'Pendente'
+        let pendentes = dadosAlunos.filter(a => a.status === "Pendente");
 
         if (pendentes.length === 0) {
-            container.innerHTML = '<div class="empty-state">Nenhum aluno pendente no momento. Todos estão adimplentes!</div>';
+            container.innerHTML = '<div class="empty-state">Nenhum aluno com pagamento pendente no momento. Todos estão adimplentes!</div>';
             return;
         }
 
@@ -362,8 +490,8 @@
             let vencimentoFormatado = vencimento.toLocaleDateString('pt-BR');
             let chavePixAdmin = document.getElementById('adminPix').value;
 
-            // Mensagem automática de cobrança informando débito e chave PIX criada pelo admin
-            let textoMensagem = encodeURIComponent(`Olá ${aluno.nome}, identificamos um débito em aberto referente à mensalidade (Vencimento: ${vencimentoFormatado}). Para regularizar, utilize a chave PIX: ${chavePixAdmin}. Após o pagamento, envie o comprovante por aqui.`);
+            // Mensagem automática de cobrança por WhatsApp contendo débito e chave PIX cadastrada
+            let textoMensagem = encodeURIComponent(`Olá ${aluno.nome}, passamos para informar o seu débito pendente referente à mensalidade (Vencimento: ${vencimentoFormatado}). Para regularizar, realize o pagamento via PIX utilizando a chave: ${chavePixAdmin}. Envie o comprovante por aqui.`);
             let linkWhatsapp = `https://wa.me/${aluno.telefone}?text=${textoMensagem}`;
 
             let card = document.createElement('div');
@@ -374,7 +502,7 @@
                     <div>Pendente (Vencimento: ${vencimentoFormatado})</div>
                 </div>
                 <div class="student-actions">
-                    <a href="${linkWhatsapp}" target="_blank" class="btn-whatsapp" title="Enviar cobrança via WhatsApp">💬 Cobrar WhatsApp</a>
+                    <a href="${linkWhatsapp}" target="_blank" class="btn-whatsapp">💬 Cobrar WhatsApp</a>
                     <button class="btn-pay" onclick="darBaixa(${aluno.id})">Pago</button>
                 </div>
             `;
@@ -382,34 +510,34 @@
         });
     }
 
-    // Ao clicar em "Pago", altera o status e remove o aluno da lista de pendentes em débitos
+    // Dá baixa no pagamento: muda o status para "Pago" e remove o aluno da lista de pendentes em débitos
     function darBaixa(id) {
-        let aluno = alunosFinanceiro.find(a => a.id === id);
+        let aluno = dadosAlunos.find(a => a.id === id);
         if (aluno) {
             aluno.status = "Pago";
-            renderizarLista();
+            renderizarListaFinanceiro();
         }
     }
 
     function salvarPix() {
         let chave = document.getElementById('adminPix').value;
         alert("Chave PIX atualizada com sucesso: " + chave);
-        renderizarLista();
+        renderizarListaFinanceiro();
     }
 
     function gerarRelatorio() {
         let inicio = document.getElementById('dataInicioRelatorio').value;
         let fim = document.getElementById('dataFimRelatorio').value;
         if(!inicio || !fim) {
-            alert("Por favor, selecione o período completo para gerar o fechamento.");
+            alert("Por favor, selecione as datas de início e fim do relatório.");
             return;
         }
-        alert(`Gerando relatório de fechamento de caixa para o período de ${inicio} até ${fim}...`);
+        alert(`Gerando relatório de fechamento de caixa de ${inicio} até ${fim}...`);
     }
 
-    // Inicialização ao carregar a página/modal
+    // Inicialização ao carregar a página
     window.onload = function() {
-        renderizarLista();
+        renderizarListaFinanceiro();
     };
 </script>
 
